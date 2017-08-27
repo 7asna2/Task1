@@ -1,7 +1,9 @@
 package com.example.hasnaa.orangelabstask.UI;
 
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
@@ -11,10 +13,13 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.hasnaa.orangelabstask.R;
 
-public class MainActivity extends AppCompatActivity {
+import net.grandcentrix.thirtyinch.TiActivity;
+
+public class MainActivity extends TiActivity<MainPresenter,MainView> implements MainView {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -32,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +45,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        searchView = (SearchView) findViewById(R.id.search1);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Toast.makeText(MainActivity.this, "Search come here "+query +"\n Pass it to current fragment", Toast.LENGTH_LONG).show();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
         setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
+        // Create the adapter that will return a fragment for each of the two
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
@@ -77,6 +96,12 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @NonNull
+    @Override
+    public MainPresenter providePresenter() {
+        return new MainPresenter();
+    }
+
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -86,11 +111,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             if (position == 0) {        //open photos fragment
-                return new PhotosFragment().newInstance();
+                return new PhotosFragment_().newInstance();
             }
             else
             if (position == 1) {        //open groups fragment
-                return new GroupsFragment().newInstance();
+                return new GroupsFragment_().newInstance();
             }
             return null;
         }

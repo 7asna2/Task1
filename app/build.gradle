@@ -17,6 +17,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
@@ -29,5 +30,32 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.android.support:cardview-v7:25.3.1'
+    def thirtyinchVersion = '0.8.0'
+
+    // MVP for activity and fragment
+    compile "net.grandcentrix.thirtyinch:thirtyinch:$thirtyinchVersion"
+
+    // rx (1 or 2) extension
+//    compile "net.grandcentrix.thirtyinch:thirtyinch-rx:$thirtyinchVersion"
+//    compile "net.grandcentrix.thirtyinch:thirtyinch-rx2:$thirtyinchVersion"
+
+    compile "net.grandcentrix.thirtyinch:thirtyinch-logginginterceptor:$thirtyinchVersion"
+
+    // test extension
+    testCompile "net.grandcentrix.thirtyinch:thirtyinch-test:$thirtyinchVersion"
+
+
+    // CompositeAndroid plugin
+    // When you are using ThirtyInch with the CompositeAndroid extension you have to manually
+    // include the CompositeAndroid dependency. It has to be the same version as appcompat and
+    // the support library
+
+    compile "net.grandcentrix.thirtyinch:thirtyinch-plugin:$thirtyinchVersion"
+    // def supportLibraryVersion = '24.2.1' <-- use your own version
+    compile "com.pascalwelsch.compositeandroid:activity:25.3.1"
+
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+
 
 }

@@ -1,4 +1,4 @@
-package com.example.hasnaa.orangelabstask;
+package com.example.hasnaa.orangelabstask.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.hasnaa.orangelabstask.R;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 

@@ -1,11 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">OrangeLabsTask</string>
     <string name="action_settings">Settings</string>
 
-    <string name="groups">Groups</string>
-    <string name="photos">Photos</string>
+    <string name="groups" translatable="false">Groups</string>
+    <string name="photos" translatable="false">Photos</string>
 
-    <string name="topic">%1$d topics</string>
-    <string name="members">%1$d members</string>
+    <string name="topic">%s topics</string>
+    <string name="members">%s members</string>
     <string name="section_format">Hello World from section: %1$d</string>
 </resources>
