@@ -9,5 +9,4 @@ import com.example.hasnaa.orangelabstask.model.PhotosSearch;
 public interface GroupsSearchCompleted {
     void onDownload(GroupsSearch photosSearch);
     void onError(String error);
-
 }

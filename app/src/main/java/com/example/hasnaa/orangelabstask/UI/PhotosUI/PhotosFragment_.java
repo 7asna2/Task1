@@ -54,8 +54,8 @@ public class PhotosFragment_ extends TiFragment<PhotosPresenter, PhotosView> imp
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment, container, false);
-        searchView = (SearchView) view.findViewById(R.id.search1);
-//        searchView = (SearchView)getActivity().findViewById(R.id.search1);
+//        searchView = (SearchView) view.findViewById(R.id.search1);
+        searchView = (SearchView)getActivity().findViewById(R.id.search1);
 
         emptyView = (TextView) view.findViewById(R.id.empty_view);
         loadingIndicator = (ProgressBar) view.findViewById(R.id.loading_indicator);
