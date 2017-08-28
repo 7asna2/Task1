@@ -1,6 +1,7 @@
 package com.example.hasnaa.orangelabstask.UI.PhotosUI;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.example.hasnaa.orangelabstask.Service;
 import com.example.hasnaa.orangelabstask.model.Photo;
@@ -18,9 +19,6 @@ import retrofit2.Call;
 public class PhotosPresenter extends TiPresenter<PhotosView> {
 
     public final String LOG_TAG = this.getClass().getSimpleName();
-
-    private Service service;
-    private Call<PhotosSearch> call;
     List<String> urls = null;
     private PhotoModel photosModel;
 
@@ -38,20 +36,16 @@ public class PhotosPresenter extends TiPresenter<PhotosView> {
 
     @Override
     protected void onAttachView(@NonNull PhotosView view) {
+        Log.i(LOG_TAG,"func OnattachView called");
         super.onAttachView(view);
         if(urls!=null){
             getView().provideData(urls);
         }
     }
-    @Override
-    protected void onDetachView() {
-        super.onDetachView();
-        if (call!=null)
-            if(!call.isCanceled())
-                call.cancel();
-    }
 
     public void search(String text) {
+        Log.i(LOG_TAG,"func Search ");
+        Log.d(LOG_TAG,"params: text"+text);
         photosModel.setPhotosSearchCompleted(new PhotosSearchCompleted() {
             @Override
             public void onDownload(PhotosSearch photosSearch) {

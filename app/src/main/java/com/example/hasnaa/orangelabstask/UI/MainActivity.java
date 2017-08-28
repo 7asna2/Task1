@@ -15,21 +15,13 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.hasnaa.orangelabstask.R;
-import com.example.hasnaa.orangelabstask.UI.GroupsUI.GroupsFragment_;
-import com.example.hasnaa.orangelabstask.UI.PhotosUI.PhotosFragment_;
+import com.example.hasnaa.orangelabstask.UI.GroupsUI.GroupsFragment;
+import com.example.hasnaa.orangelabstask.UI.PhotosUI.PhotosFragment;
 
 import net.grandcentrix.thirtyinch.TiActivity;
 
 public class MainActivity extends TiActivity<MainPresenter,MainView> implements MainView {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
     private final String LOG_TAG = this.getClass().getSimpleName();
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -39,6 +31,8 @@ public class MainActivity extends TiActivity<MainPresenter,MainView> implements 
      */
     private ViewPager mViewPager;
     private SearchView searchView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +44,8 @@ public class MainActivity extends TiActivity<MainPresenter,MainView> implements 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(MainActivity.this, "Search come here "+query +"\n Pass it to current fragment", Toast.LENGTH_LONG).show();
+                Searchable fragment=(Searchable)mSectionsPagerAdapter.getItem(mViewPager.getCurrentItem());
+                fragment.search(query);
                 return true;
             }
 
@@ -59,6 +54,7 @@ public class MainActivity extends TiActivity<MainPresenter,MainView> implements 
                 return false;
             }
         });
+
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the two
         // primary sections of the activity.
@@ -70,8 +66,6 @@ public class MainActivity extends TiActivity<MainPresenter,MainView> implements 
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
-
     }
 
 
@@ -84,9 +78,6 @@ public class MainActivity extends TiActivity<MainPresenter,MainView> implements 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -105,6 +96,8 @@ public class MainActivity extends TiActivity<MainPresenter,MainView> implements 
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+        private PhotosFragment photosFragment;
+        private GroupsFragment groupsFragment;
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -112,11 +105,21 @@ public class MainActivity extends TiActivity<MainPresenter,MainView> implements 
         @Override
         public Fragment getItem(int position) {
             if (position == 0) {        //open photos fragment
-                return new PhotosFragment_().newInstance();
+                if(photosFragment ==null) {
+                    photosFragment=PhotosFragment.newInstance();
+                    return photosFragment;
+                }
+                else
+                    return photosFragment;
             }
             else
             if (position == 1) {        //open groups fragment
-                return new GroupsFragment_().newInstance();
+                if(groupsFragment==null) {
+                    groupsFragment = GroupsFragment.newInstance();
+                    return groupsFragment;
+                }
+                else
+                    return groupsFragment;
             }
             return null;
         }

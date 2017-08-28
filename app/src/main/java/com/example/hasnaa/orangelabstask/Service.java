@@ -15,7 +15,7 @@ import retrofit2.http.Query;
  */
 
 public interface Service {
-    String API_KEY="532ecc9194ac0d738d0b4feee6e1775e";//"2358e9f96c8c7b9cf3cd0780b36ad845";
+    String API_KEY="532ecc9194ac0d738d0b4feee6e1775e";
 
     @GET(".")
     Call<PhotosSearch> photosList(@Query("api_key")String api_key, @Query("method") String method,

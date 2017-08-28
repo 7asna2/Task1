@@ -1,5 +1,7 @@
 package com.example.hasnaa.orangelabstask.model;
 
+import android.util.Log;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -107,7 +109,9 @@ public class Photo {
 
 
     public String getUrl() {
-      return   "https://farm"+getFarm()+".staticflickr.com/"+getServer()+
+        String url="https://farm"+getFarm()+".staticflickr.com/"+getServer()+
                 "/"+getId()+"_"+ getSecret()+"_z.jpg";
+        Log.i("photo URL", url);
+      return  url;
     }
 }

@@ -15,8 +15,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.hasnaa.orangelabstask.PhotosRecyclerViewAdapter;
+import com.example.hasnaa.orangelabstask.Adapters.PhotosRecyclerViewAdapter;
 import com.example.hasnaa.orangelabstask.R;
+import com.example.hasnaa.orangelabstask.UI.Searchable;
 
 import net.grandcentrix.thirtyinch.TiFragment;
 
@@ -24,22 +25,19 @@ import java.util.List;
 
 
 
-public class PhotosFragment_ extends TiFragment<PhotosPresenter, PhotosView> implements PhotosView, SearchView.OnQueryTextListener {
+public class PhotosFragment extends TiFragment<PhotosPresenter, PhotosView> implements Searchable,PhotosView{
 
     private final String LOG_TAG = this.getClass().getSimpleName();
-//    private final static int IMAGE_SEARCH_LOADER = 10;
-//    private static final String SEARCH_QUERY_URL_EXTRA = "query";
 
     RecyclerView recyclerView;
     TextView emptyView;
-    SearchView searchView;
     ProgressBar loadingIndicator;
 
-    public PhotosFragment_() {
+    public PhotosFragment() {
     }
 
-    public static PhotosFragment_ newInstance() {
-        return new PhotosFragment_();
+    public static PhotosFragment newInstance() {
+        return new PhotosFragment();
     }
     @NonNull
     @Override
@@ -54,12 +52,8 @@ public class PhotosFragment_ extends TiFragment<PhotosPresenter, PhotosView> imp
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment, container, false);
-//        searchView = (SearchView) view.findViewById(R.id.search1);
-        searchView = (SearchView)getActivity().findViewById(R.id.search1);
-
         emptyView = (TextView) view.findViewById(R.id.empty_view);
         loadingIndicator = (ProgressBar) view.findViewById(R.id.loading_indicator);
-        searchView.setOnQueryTextListener(this);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(
                 new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
@@ -68,10 +62,12 @@ public class PhotosFragment_ extends TiFragment<PhotosPresenter, PhotosView> imp
 
     @Override
     public void provideData(List<String> data) {
+        Log.i(LOG_TAG,"fun :provideData called");
+        Log.d(LOG_TAG,"params data"+ data.toString());
         emptyView.setVisibility(View.GONE);
         PhotosRecyclerViewAdapter adapter = new PhotosRecyclerViewAdapter(getContext(), data);
         recyclerView.setAdapter(adapter);
-        loadingIndicator.setVisibility(View.VISIBLE);
+        loadingIndicator.setVisibility(View.GONE);
     }
 
     @Override
@@ -83,18 +79,11 @@ public class PhotosFragment_ extends TiFragment<PhotosPresenter, PhotosView> imp
     }
 
     @Override
-    public boolean onQueryTextSubmit(String query) {
-        loadingIndicator.setVisibility(View.GONE);
-        getPresenter().search(query.trim());
+    public void search(String text) {
+        Log.i(LOG_TAG,"func :onQueryTextSubmit");
+        Log.d(LOG_TAG,text);
+        loadingIndicator.setVisibility(View.VISIBLE);
+        getPresenter().search(text.trim());
 
-        //hide keyboard
-        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
-        return true;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        return false;
     }
 }

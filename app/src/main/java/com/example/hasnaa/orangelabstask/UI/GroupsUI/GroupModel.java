@@ -21,7 +21,6 @@ public class GroupModel {
 
     private final String LOG_TAG = this.getClass().getSimpleName() ;
     private Call<GroupsSearch> call;
-    private List<Group> groupsList = null;
 
     private GroupsSearchCompleted groupsSearchCompleted;
 
