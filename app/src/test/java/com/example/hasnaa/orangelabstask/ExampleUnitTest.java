@@ -1,6 +1,6 @@
 package com.example.hasnaa.orangelabstask;
 
-import com.example.hasnaa.orangelabstask.UI.PhotosPresenter;
+import com.example.hasnaa.orangelabstask.UI.PhotosUI.PhotosPresenter;
 
 import org.junit.Test;
 
@@ -19,6 +19,7 @@ public class ExampleUnitTest {
     public void searchTest (){
         final PhotosPresenter presenter = new PhotosPresenter();
         presenter.search("cat");
+
 
     }
 }

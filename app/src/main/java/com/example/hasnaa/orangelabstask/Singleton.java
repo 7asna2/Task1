@@ -1,4 +1,4 @@
-package com.example.hasnaa.orangelabstask.UI;
+package com.example.hasnaa.orangelabstask;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

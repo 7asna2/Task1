@@ -105,8 +105,8 @@ public class Photo {
         this.isfamily = isfamily;
     }
 
-    @Override
-    public String toString() {
+
+    public String getUrl() {
       return   "https://farm"+getFarm()+".staticflickr.com/"+getServer()+
                 "/"+getId()+"_"+ getSecret()+"_z.jpg";
     }

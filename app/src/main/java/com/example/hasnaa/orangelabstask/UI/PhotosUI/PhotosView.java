@@ -1,4 +1,4 @@
-package com.example.hasnaa.orangelabstask.UI;
+package com.example.hasnaa.orangelabstask.UI.PhotosUI;
 
 import com.example.hasnaa.orangelabstask.model.Group;
 
@@ -18,5 +18,8 @@ public interface PhotosView extends TiView {
     @CallOnMainThread
     @DistinctUntilChanged
     void provideData(List<String> data);
+    @CallOnMainThread
+    @DistinctUntilChanged
+    void showErrorMsg();
 
 }

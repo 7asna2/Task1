@@ -1,4 +1,4 @@
-package com.example.hasnaa.orangelabstask.UI;
+package com.example.hasnaa.orangelabstask.UI.PhotosUI;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,38 +15,39 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.hasnaa.orangelabstask.GroupsRecyclerViewAdapter;
 import com.example.hasnaa.orangelabstask.PhotosRecyclerViewAdapter;
 import com.example.hasnaa.orangelabstask.R;
-import com.example.hasnaa.orangelabstask.model.Group;
 
 import net.grandcentrix.thirtyinch.TiFragment;
 
 import java.util.List;
 
-/**
- * Created by Hasnaa on 27-08-2017.
- */
-public class GroupsFragment_  extends TiFragment<GroupsPresenter, GroupsView> implements GroupsView, SearchView.OnQueryTextListener {
+
+
+public class PhotosFragment_ extends TiFragment<PhotosPresenter, PhotosView> implements PhotosView, SearchView.OnQueryTextListener {
+
     private final String LOG_TAG = this.getClass().getSimpleName();
+//    private final static int IMAGE_SEARCH_LOADER = 10;
+//    private static final String SEARCH_QUERY_URL_EXTRA = "query";
 
     RecyclerView recyclerView;
     TextView emptyView;
     SearchView searchView;
     ProgressBar loadingIndicator;
 
-    public GroupsFragment_() {
+    public PhotosFragment_() {
     }
 
-    public static GroupsFragment_ newInstance() {
-        return new GroupsFragment_();
+    public static PhotosFragment_ newInstance() {
+        return new PhotosFragment_();
     }
-
     @NonNull
     @Override
-    public GroupsPresenter providePresenter() {
-        return new GroupsPresenter();
+    public PhotosPresenter providePresenter() {
+        return new PhotosPresenter();
     }
+
+
 
     @Nullable
     @Override
@@ -65,17 +67,19 @@ public class GroupsFragment_  extends TiFragment<GroupsPresenter, GroupsView> im
     }
 
     @Override
-    public void provideData(List<Group> data) {
-        if (data == null) {
-            recyclerView.setVisibility(View.GONE);
-            emptyView.setVisibility(View.VISIBLE);
-        } else {
-            emptyView.setVisibility(View.GONE);
-            GroupsRecyclerViewAdapter adapter = new GroupsRecyclerViewAdapter(getContext(), data);
-            recyclerView.setAdapter(adapter);
-            loadingIndicator.setVisibility(View.VISIBLE);
-        }
+    public void provideData(List<String> data) {
+        emptyView.setVisibility(View.GONE);
+        PhotosRecyclerViewAdapter adapter = new PhotosRecyclerViewAdapter(getContext(), data);
+        recyclerView.setAdapter(adapter);
+        loadingIndicator.setVisibility(View.VISIBLE);
+    }
 
+    @Override
+    public void showErrorMsg() {
+        Log.e(LOG_TAG,"error getting data");
+        recyclerView.setVisibility(View.GONE);
+        emptyView.setVisibility(View.VISIBLE);
+        loadingIndicator.setVisibility(View.GONE);
     }
 
     @Override
@@ -84,7 +88,7 @@ public class GroupsFragment_  extends TiFragment<GroupsPresenter, GroupsView> im
         getPresenter().search(query.trim());
 
         //hide keyboard
-        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
         return true;
     }

@@ -2,7 +2,6 @@ package com.example.hasnaa.orangelabstask.UI;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 
@@ -16,6 +15,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.hasnaa.orangelabstask.R;
+import com.example.hasnaa.orangelabstask.UI.GroupsUI.GroupsFragment_;
+import com.example.hasnaa.orangelabstask.UI.PhotosUI.PhotosFragment_;
 
 import net.grandcentrix.thirtyinch.TiActivity;
 

@@ -1,4 +1,4 @@
-package com.example.hasnaa.orangelabstask.UI;
+package com.example.hasnaa.orangelabstask.UI.GroupsUI;
 
 import com.example.hasnaa.orangelabstask.model.Group;
 
@@ -15,4 +15,7 @@ public interface  GroupsView extends TiView{
     @CallOnMainThread
     @DistinctUntilChanged
     void provideData(List<Group> data);
+    @CallOnMainThread
+    @DistinctUntilChanged
+    void showErrorMsg(String msg);
 }
