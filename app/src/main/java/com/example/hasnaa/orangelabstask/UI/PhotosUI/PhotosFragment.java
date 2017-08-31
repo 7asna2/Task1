@@ -80,7 +80,7 @@ public class PhotosFragment extends TiFragment<PhotosPresenter, PhotosView> impl
 
     @Override
     public void search(String text) {
-        Log.i(LOG_TAG,"func :onQueryTextSubmit");
+        Log.i(LOG_TAG,"func :Search searchable interface");
         Log.d(LOG_TAG,text);
         loadingIndicator.setVisibility(View.VISIBLE);
         getPresenter().search(text.trim());

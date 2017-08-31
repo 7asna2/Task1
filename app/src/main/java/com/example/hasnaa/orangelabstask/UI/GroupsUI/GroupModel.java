@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.example.hasnaa.orangelabstask.Service;
 import com.example.hasnaa.orangelabstask.Singleton;
-import com.example.hasnaa.orangelabstask.model.Group;
 import com.example.hasnaa.orangelabstask.model.GroupsSearch;
 
 
@@ -33,10 +32,11 @@ public class GroupModel {
     }
 
 
-    void searchGroups(String query) {
+    public boolean searchGroups(String query) {
         Log.i(LOG_TAG,"fun : searchGroup called");
         Log.d(LOG_TAG, "params : query"+query);
 
+        final boolean[] r = new boolean[1];
         Singleton singleton = Singleton.getInstance();
         call = singleton.getService().GroupsList(Service.API_KEY, "flickr.groups.search", "json", "1", query);
         call.enqueue(new Callback<GroupsSearch>() {
@@ -45,9 +45,11 @@ public class GroupModel {
                 Log.i(LOG_TAG,response.toString());
                 if (response.body().getGroups() != null) {
                     groupsSearchCompleted.onDownload(response.body());
+                    r[0] =true;
                 } else {
                     groupsSearchCompleted.onError(response.body().getStat());
                     Log.w(LOG_TAG,response.body().getStat()+response.message());
+                    r[0] =false;
                 }
             }
 
@@ -57,5 +59,6 @@ public class GroupModel {
                 Log.w(LOG_TAG,"error in get response",t);
             }
         });
+        return r[0];
     }
 }

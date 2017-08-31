@@ -8,9 +8,7 @@ import net.grandcentrix.thirtyinch.distinctuntilchanged.DistinctUntilChanged;
 
 import java.util.List;
 
-/**
- * Created by Hasnaa on 27-08-2017.
- */
+
 public interface  GroupsView extends TiView{
     @CallOnMainThread
     @DistinctUntilChanged
@@ -18,4 +16,5 @@ public interface  GroupsView extends TiView{
     @CallOnMainThread
     @DistinctUntilChanged
     void showErrorMsg(String msg);
+
 }

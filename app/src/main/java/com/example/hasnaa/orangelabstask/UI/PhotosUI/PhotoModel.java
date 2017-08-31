@@ -16,20 +16,22 @@ import retrofit2.Response;
 public class PhotoModel {
     private final String LOG_TAG= this.getClass().getSimpleName();
     private Call<PhotosSearch> call;
-    private PhotosSearchCompleted photosSearchCompleted;
+    private SearchCompleted photosSearchCompleted;
 
-    public PhotosSearchCompleted getPhotosSearchCompleted() {
+    public SearchCompleted getPhotosSearchCompleted() {
         return photosSearchCompleted;
     }
 
-    public void setPhotosSearchCompleted(PhotosSearchCompleted photosSearchCompleted) {
+    public void setPhotosSearchCompleted(SearchCompleted photosSearchCompleted) {
         this.photosSearchCompleted = photosSearchCompleted;
     }
 
 
-    void searchPhotos(String query) {
+    public void searchPhotos(String query) {
         Singleton singleton = Singleton.getInstance();
 
+        Log.i(LOG_TAG,"Func SearchPhotos called");
+        Log.d(LOG_TAG,"parms query: " +query);
 //        service = singleton.getRetrofit().create(Service.class);
         call = singleton.getService().photosList(Service.API_KEY, "flickr.photos.search", "json", "1", query);
         call.enqueue(new Callback<PhotosSearch>() {

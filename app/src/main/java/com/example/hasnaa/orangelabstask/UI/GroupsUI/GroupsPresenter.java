@@ -40,7 +40,7 @@ public class GroupsPresenter extends TiPresenter<GroupsView> {
         Log.i(LOG_TAG,"func OnattachView called");
         super.onAttachView(view);
         if(groupsList!=null){
-            getView().provideData(groupsList);
+            view.provideData(groupsList);
         }
     }
 

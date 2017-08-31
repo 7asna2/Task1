@@ -68,7 +68,7 @@ public class GroupsFragment extends TiFragment<GroupsPresenter, GroupsView> impl
         emptyView.setVisibility(View.GONE);
         GroupsRecyclerViewAdapter adapter = new GroupsRecyclerViewAdapter(getContext(), data);
         recyclerView.setAdapter(adapter);
-        loadingIndicator.setVisibility(View.VISIBLE);
+        loadingIndicator.setVisibility(View.GONE);
     }
 
     @Override
@@ -82,12 +82,12 @@ public class GroupsFragment extends TiFragment<GroupsPresenter, GroupsView> impl
 
     @Override
     public void search(String text) {
-        Log.i(LOG_TAG,"func :onQueryTextSubmit");
+        Log.i(LOG_TAG,"func :Search searchable interface");
         Log.d(LOG_TAG,text);
-        loadingIndicator.setVisibility(View.GONE);
+        loadingIndicator.setVisibility(View.VISIBLE);
         getPresenter().search(text.trim());
 
-        //hide keyboard
+//        hide keyboard
 //        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 //        imm.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
     }

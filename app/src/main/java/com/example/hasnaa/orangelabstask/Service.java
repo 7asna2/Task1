@@ -10,12 +10,10 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-/**
- * Created by Ali on 27/08/2017.
- */
+
 
 public interface Service {
-    String API_KEY="532ecc9194ac0d738d0b4feee6e1775e";
+    String API_KEY="647e979532eba1076860120f81f5cb57";  // put your api_key here
 
     @GET(".")
     Call<PhotosSearch> photosList(@Query("api_key")String api_key, @Query("method") String method,

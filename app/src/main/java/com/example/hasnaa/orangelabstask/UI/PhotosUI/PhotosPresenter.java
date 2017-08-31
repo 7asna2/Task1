@@ -3,7 +3,6 @@ package com.example.hasnaa.orangelabstask.UI.PhotosUI;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.example.hasnaa.orangelabstask.Service;
 import com.example.hasnaa.orangelabstask.model.Photo;
 import com.example.hasnaa.orangelabstask.model.PhotosSearch;
 
@@ -12,8 +11,6 @@ import net.grandcentrix.thirtyinch.TiPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
 
 
 public class PhotosPresenter extends TiPresenter<PhotosView> {
@@ -39,14 +36,14 @@ public class PhotosPresenter extends TiPresenter<PhotosView> {
         Log.i(LOG_TAG,"func OnattachView called");
         super.onAttachView(view);
         if(urls!=null){
-            getView().provideData(urls);
+            view.provideData(urls);
         }
     }
 
     public void search(String text) {
         Log.i(LOG_TAG,"func Search ");
         Log.d(LOG_TAG,"params: text"+text);
-        photosModel.setPhotosSearchCompleted(new PhotosSearchCompleted() {
+        photosModel.setPhotosSearchCompleted(new SearchCompleted() {
             @Override
             public void onDownload(PhotosSearch photosSearch) {
                 urls=new ArrayList<String>();

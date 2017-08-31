@@ -5,7 +5,7 @@ import com.example.hasnaa.orangelabstask.model.PhotosSearch;
 /**
  * Created by Hasnaa on 28-08-2017.
  */
-public interface PhotosSearchCompleted {
+public interface SearchCompleted {
     void onDownload(PhotosSearch photosSearch);
     void onError(String error);
 }

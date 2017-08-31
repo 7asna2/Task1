@@ -1,8 +1,18 @@
 package com.example.hasnaa.orangelabstask;
 
+import com.example.hasnaa.orangelabstask.UI.GroupsUI.GroupModel;
+import com.example.hasnaa.orangelabstask.UI.GroupsUI.GroupsPresenter;
+import com.example.hasnaa.orangelabstask.UI.PhotosUI.PhotoModel;
 import com.example.hasnaa.orangelabstask.UI.PhotosUI.PhotosPresenter;
+import com.example.hasnaa.orangelabstask.model.GroupsSearch;
 
 import org.junit.Test;
+import org.mockito.Mockito;
+
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Response;
 
 import static org.junit.Assert.*;
 
@@ -15,11 +25,36 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
 
-    @Test
-    public void searchTest (){
-        final PhotosPresenter presenter = new PhotosPresenter();
-        presenter.search("cat");
+//    @Test
+//    public void searchTest (){
+//        GroupModel groupModel = new GroupModel();
+//        groupModel.searchGroups("cat");
+//        assertTrue(groupModel.searchGroups("cat"));
+//    }
 
+    @Test
+    public void request_Success() {
+
+//        Singleton singleton = Singleton.getInstance();//getTesterInstance().create(APIEndpoints.class);
+//
+//        Call<GroupsSearch> call = singleton.getService().GroupsList(Service.API_KEY, "flickr.groups.search", "json", "1", "cat");
+//
+//        try {
+//            Response<GroupsSearch> response = call.execute();
+//            GroupsSearch authResponse = response.body();
+//
+//            assertTrue(response.isSuccessful());
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+//        PhotoModel photoModel = new PhotoModel();
+//        Mockito.verify(photoModel).searchPhotos("cat");
 
     }
+
+
+
+
 }

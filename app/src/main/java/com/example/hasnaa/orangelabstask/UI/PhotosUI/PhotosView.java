@@ -9,9 +9,7 @@ import net.grandcentrix.thirtyinch.distinctuntilchanged.DistinctUntilChanged;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Ali on 27/08/2017.
- */
+
 
 public interface PhotosView extends TiView {
 
